@@ -25,9 +25,7 @@ airline_data =  pd.read_csv('https://cf-courses-data.s3.us.cloud-object-storage.
 year_list = [i for i in range(2005, 2021, 1)]
 
 """Compute graph data for creating yearly airline performance report 
-
 Function that takes airline data as input and create 5 dataframes based on the grouping condition to be used for plottling charts and grphs.
-
 Argument:
      
     df: Filtered dataframe
@@ -50,9 +48,7 @@ def compute_data_choice_1(df):
 
 
 """Compute graph data for creating yearly airline delay report
-
 This function takes in airline data and selected year as an input and performs computation for creating charts and plots.
-
 Arguments:
     df: Input airline data.
     
@@ -74,7 +70,7 @@ app.layout = html.Div(children=[
                                 # TASK1: Add title to the dashboard
                                 # Enter your code below. Make sure you have correct formatting.
                                 html.H1('US Domestic Airline Flights Performance',
-                                style={'textAlign': 'left', 'colour': '#503D36', 'font-size': 24})
+                                style={'textAlign': 'left', 'colour': '#503D36', 'font-size': 24}),
                                 # REVIEW2: Dropdown creation
                                 # Create an outer division 
                                 html.Div([
@@ -90,8 +86,8 @@ app.layout = html.Div(children=[
                                         # Enter your code below. Make sure you have correct formatting.
                                         dcc.Dropdown(id='input-type',
                                         options = [
-                                            {'label'='Yearly Airline Performance Report', 'value': 'OTP1'},
-                                            {'label'='Yearly Airline Delay Report', 'value': 'OTP2'}
+                                            {'label' : 'Yearly Airline Performance Report', 'value': 'OTP1'},
+                                            {'label' : 'Yearly Airline Delay Report', 'value': 'OTP2'}
                                         ],
                                         placeholder = 'Select a report type',
                                         style = {'width':'80%', 'padding':'3px', 'font-size': '20px', 'text-align-last' : 'center'})
@@ -135,19 +131,20 @@ app.layout = html.Div(children=[
 # Callback function definition
 # TASK4: Add 5 ouput components
 # Enter your code below. Make sure you have correct formatting.
-[Output(component_id='plot1', component_property='children'),
- Output(component_id='plot2', component_property='children'),
- Output(component_id='plot3', component_property='children'),
- Output(component_id='plot4', component_property='children'),
- Output(component_id='plot5', component_property='children')]
-@app.callback( [....],
+@app.callback( [Output(component_id='plot1', component_property='children'),
+                Output(component_id='plot2', component_property='children'),
+                Output(component_id='plot3', component_property='children'),
+                Output(component_id='plot4', component_property='children'),
+                Output(component_id='plot5', component_property='children'),
+                ],
                [Input(component_id='input-type', component_property='value'),
                 Input(component_id='input-year', component_property='value')],
                # REVIEW4: Holding output state till user enters all the form information. In this case, it will be chart type and year
                [State("plot1", 'children'), State("plot2", "children"),
                 State("plot3", "children"), State("plot4", "children"),
                 State("plot5", "children")
-               ])
+                ])
+
 # Add computation to callback function and return graph
 def get_graph(chart, year, children1, children2, c3, c4, c5):
       
